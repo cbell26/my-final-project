@@ -99,6 +99,15 @@ Mathematics & Data Analytics
 
 ---
 
+## What to do next
+1. Replace your README with this  
+2. Save  
+3. Run:
+
+```bash
+git add README.md
+git commit -m "final README properly formatted"
+git push
 # Then run:
 ```bash
 git add README.md
