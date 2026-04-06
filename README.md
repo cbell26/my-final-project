@@ -4,7 +4,7 @@
 This project uses machine learning to predict post-graduation earnings based on college characteristics such as tuition, student debt, and graduation rates. The goal is to help students and families make more informed financial decisions when choosing a college.
 
 Two models are implemented and compared:
-- Random Forest Regression  
+- Random Forest Regression
 - Neural Network (MLPRegressor)
 
 ---
@@ -99,8 +99,8 @@ Mathematics & Data Analytics
 
 ---
 
-Then run:
+# Then run:
 ```bash
 git add README.md
-git commit -m "final README cleaned formatting"
+git commit -m "fixed README formatting"
 git push
