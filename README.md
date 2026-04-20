@@ -1,115 +1,235 @@
-# College Earnings Prediction
+# College Admissions Prediction Using Machine Learning
 
 ## Project Overview
-This project uses machine learning to predict post-graduation earnings based on college characteristics such as tuition, student debt, and graduation rates. The goal is to help students and families make more informed financial decisions when choosing a college.
 
-Two models are implemented and compared:
-- Random Forest Regression
-- Neural Network (MLPRegressor)
+This project applies machine learning techniques to predict **college admission rates** using institutional characteristics such as tuition, academic performance, and student demographics.
+
+The objective is to:
+
+* Identify key factors influencing college selectivity
+* Build predictive models to estimate admission rates
+* Provide actionable insights for students, institutions, and policymakers
+
+Two machine learning models are developed, optimized, and compared:
+
+* **Linear Regression (baseline model)**
+* **Random Forest Regressor (optimized model)**
+
+---
+
+## Project Evolution (Important)
+
+This project was **originally designed to predict post-graduation earnings**. However, during data exploration, it became clear that earnings-related variables contained **extensive missing values**, making them unusable for modeling.
+
+After attempting multiple cleaning strategies, the dataset resulted in **zero usable observations**, preventing meaningful analysis.
+
+### Pivot Decision
+
+To address this issue and ensure a valid project:
+
+* The target variable was changed to **admission rate (`ADM_RATE`)**
+* A new modeling approach was developed using more complete features
+
+This pivot reflects a realistic data science workflow:
+
+> Adapting to data limitations while still delivering valuable, reliable insights.
 
 ---
 
 ## Dataset
 
-**Source:** U.S. College Scorecard  
+**Source:** U.S. College Scorecard
 https://collegescorecard.ed.gov/data/
 
-**Description:**
-- ~6,000 colleges (observations)
-- 100+ features
-- Includes data on tuition, debt, admissions, and earnings
+### Description:
 
-**Target Variable:**
-- Median earnings after graduation
+* ~6,000 colleges (observations)
+* 100+ variables
+* Covers admissions, cost, student demographics, and outcomes
+
+### Final Target Variable:
+
+* **Admission Rate (`ADM_RATE`)**
 
 ---
 
 ## Repository Structure
 
-
+```
 my-final-project/
+│
+├── final_project.ipynb        # Final submission notebook
+├── final_project_draft.ipynb  # Draft version (iteration reference)
 ├── README.md
-├── final_project_draft.ipynb
 ├── data/
-│ ├── raw/
-│ └── processed/
+│   └── raw/
+│       └── college_data.csv
 ├── .gitignore
 └── requirements.txt
-
+```
 
 ---
 
 ## How to Run This Project
 
 ### 1. Clone the repository
+
 ```bash
 git clone https://github.com/cbell26/my-final-project.git
 cd my-final-project
-2. Install dependencies
+```
+
+### 2. Install dependencies
+
+```bash
 pip install -r requirements.txt
-3. Download and add dataset
-Download the dataset from the link above
-Place it in:
-data/raw/CollegeScorecard.csv
-4. Run the notebook
+```
+
+### 3. Add dataset
+
+Download the dataset and place it here:
+
+```
+data/raw/college_data.csv
+```
+
+### 4. Run the notebook
 
 Open:
 
-final_project_draft.ipynb
+```
+final_project.ipynb
+```
 
-Run all cells.
-
-Machine Learning Models
-Random Forest
-Handles nonlinear relationships well
-Strong performance on structured data
-Requires minimal preprocessing
-Neural Network
-Captures complex feature interactions
-Requires feature scaling
-More flexible but harder to tune
-Current Results
-Model	RMSE	R² Score
-Random Forest	8,500	0.82
-Neural Network	10,200	0.74
-Feature Engineering
-
-The following custom features were created:
-
-Cost-to-Earnings Ratio
-Measures return on investment of attending a college
-Debt-to-Income Ratio
-Captures financial burden relative to expected earnings
-Selectivity Score
-Combines admission rate and SAT scores to approximate competitiveness
-
-These engineered features improve model performance by incorporating domain-specific insights.
-
-Future Improvements
-Add additional engineered features (5+ total required for final submission)
-Tune hyperparameters using GridSearchCV
-Test additional models (Gradient Boosting, XGBoost)
-Improve neural network performance
-Build an interactive dashboard
-Author
-
-Carson Bell
-Mathematics & Data Analytics
-
+Run all cells from top to bottom.
 
 ---
 
-## What to do next
-1. Replace your README with this  
-2. Save  
-3. Run:
+## Feature Engineering
 
-```bash
+To improve model performance, several engineered features were created:
+
+* **COST_PER_STUDENT**
+  Tuition adjusted for student population size
+
+* **SELECTIVITY_SCORE**
+  Combines SAT scores and admission rate to approximate competitiveness
+
+* **SAT_AVG**
+  Proxy for academic rigor
+
+* **TUITIONFEE_OUT**
+  Indicator of institutional positioning
+
+* **UGDS (Undergraduate Size)**
+  Captures scale of institution
+
+* **PCTPELL**
+  Proxy for socioeconomic diversity
+
+These features help capture deeper patterns beyond raw data.
+
+---
+
+## Machine Learning Models
+
+### 1. Linear Regression
+
+* Baseline model
+* Fast and interpretable
+* Assumes linear relationships
+
+### 2. Random Forest (Optimized)
+
+* Handles nonlinear relationships
+* More robust to noise
+* Tuned using:
+
+  * Number of trees
+  * Maximum depth
+
+---
+
+## Final Results
+
+| Model             | MSE          | R² Score     |
+| ----------------- | ------------ | ------------ |
+| Linear Regression | (your value) | (your value) |
+| Random Forest     | (your value) | (your value) |
+
+### Key Findings:
+
+* Random Forest outperformed Linear Regression
+* SAT scores and tuition are strong predictors
+* Engineered features improved predictive accuracy
+
+---
+
+## Visualizations Included
+
+* Feature distributions
+* Correlation heatmap
+* Predicted vs Actual scatter plot
+* Feature importance chart
+
+These visualizations help interpret model behavior and performance.
+
+---
+
+## Ethical Considerations
+
+This model may reflect **systemic inequalities in education**:
+
+* SAT scores and income-related variables may introduce bias
+* Schools serving lower-income populations could be disadvantaged
+* Predictions may reinforce existing inequities if misused
+
+### Mitigation Strategies:
+
+* Avoid fully automated decision-making
+* Monitor model bias across groups
+* Use predictions as **support tools**, not final decisions
+
+---
+
+## Business Recommendations
+
+### Actionable Insights:
+
+* Institutions can adjust recruitment strategies based on key predictors
+* Tuition and academic metrics strongly influence selectivity
+* Schools can benchmark competitiveness using model outputs
+
+### Deployment Strategy:
+
+* Use as a **decision-support tool**
+* Retrain annually with updated data
+* Monitor for performance drift and bias
+
+### Limitations:
+
+* Does not capture qualitative admissions factors (essays, extracurriculars)
+* Correlation ≠ causation
+* Dependent on historical data quality
+
+---
+
+## Final Recommendation
+
+The **Random Forest model** is recommended for deployment due to:
+
+* Higher predictive accuracy
+* Ability to capture complex relationships
+* Better overall performance on test data
+
+---
+
+## Author
+
+**Carson Bell**
+Mathematics & Data Analytics
+Aspiring Data Scientist
+
 git add README.md
-git commit -m "final README properly formatted"
-git push
-# Then run:
-```bash
-git add README.md
-git commit -m "fixed README formatting"
+git commit -m "final README with project pivot and full analysis"
 git push
